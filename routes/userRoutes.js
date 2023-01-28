@@ -6,6 +6,26 @@ const router = express.Router();
 
 router.post('/signUp', authController.signUp);
 router.post('/login', authController.login);
+router.post('/forgotPassword', authController.forgotPassword);
+router.patch('/resetPassword/:token', authController.resetPassword);
+
+router.patch(
+  '/updatePassword',
+  authController.protect,
+  authController.updatePassword
+);
+
+router.patch(
+  '/updateUserData',
+  authController.protect,
+  userController.updateUserData
+);
+
+router.delete(
+  '/deleteAccount',
+  authController.protect,
+  userController.deleteAccount
+);
 
 router
   .route('/')
